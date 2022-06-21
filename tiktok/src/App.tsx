@@ -1,20 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Fragment } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Defaulayout from './components/Layout/Defaulayout/Index';
+import { publicRoutes } from './routes/Index';
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <Router>
+            <div className="App">
+                <Routes>
+                    {publicRoutes.map((route, index) => {
+                        const Page = route.component;
+                        const Layout = route.layout === null ? Fragment : Defaulayout;
+                        if (Layout === Defaulayout) {
+                            return (
+                                <Route key={index} path={route.path} element={<Layout Children={<Page />}></Layout>} />
+                            );
+                        } else {
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    element={
+                                        <Fragment>
+                                            <Page />
+                                        </Fragment>
+                                    }
+                                />
+                            );
+                        }
+                    })}
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
