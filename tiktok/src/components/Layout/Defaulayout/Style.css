@@ -1,0 +1,19 @@
+.header.ant-layout-header.header {
+    height: 70px;
+}
+
+.logo img {
+    padding: 1px 0 0 0;
+    width: auto;
+    height: 68px;
+    float: left;
+}
+
+.iconSearch {
+    font-size: larger;
+}
+
+.ant-input-affix-wrapper.Search {
+    border-radius: 20px;
+    height: 41px;
+}
