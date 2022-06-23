@@ -2,18 +2,32 @@ import { AudioOutlined, SearchOutlined, CloudUploadOutlined, MoreOutlined } from
 import { Button, Col, Dropdown, Input, Layout, Menu, Modal, Row, Tooltip } from 'antd';
 import logo from '../../../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Login from '../../../../pages/Login/Index';
+import Tippy from '@tippyjs/react/headless';
+import 'tippy.js/dist/tippy.css';
+import Wrapper from '../../popper/Wrapper';
 const { Header } = Layout;
-const HeaderApp: React.FC = (): JSX.Element => {
+const HeaderApp = (): JSX.Element => {
+    const [valuee, setvaluee] = useState<any>();
+    const [searchResult, setsearchResult] = useState<any>([]);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
+    const show = () => setVisible(true);
+    const hide = () => setVisible(false);
 
     const menu = (
-        <Menu style={{ width: '160px' }}>
-            <Menu.Item key="1">Tiếng Việt</Menu.Item>
-            <Menu.Item key="2">Thông tin thêm</Menu.Item>
+        <Menu style={{ width: '190px' }}>
+            <Menu.Item key="1">Tiếng Việt.</Menu.Item>
+            <Menu.Item key="2">Chính sách quyền riêng tư.</Menu.Item>
+            <Menu.Item key="3">Thông tin thêm.</Menu.Item>
         </Menu>
     );
+    useEffect(() => {
+        setTimeout(() => {
+            setsearchResult([1]);
+        }, 1000);
+    }, []);
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -26,6 +40,9 @@ const HeaderApp: React.FC = (): JSX.Element => {
     const handleCancel = () => {
         setIsModalVisible(false);
     };
+    const onchange = (e: any) => {
+        console.log(e.target.value);
+    };
 
     return (
         <div>
@@ -36,19 +53,31 @@ const HeaderApp: React.FC = (): JSX.Element => {
                             <img className="logo" src={logo} alt="LogoTikTok" />
                         </Link>
                     </Col>
-                    <Col span={15}>
-                        <Input
-                            className="Search"
-                            style={{ color: 'red', width: '65rem' }}
-                            placeholder="Nhập từ khóa cần tìm!"
-                            prefix={<SearchOutlined className="site-form-item-icon iconSearch" />}
-                            suffix={
-                                <Tooltip title="Nhấn vào đây để nói!">
-                                    <AudioOutlined style={{ fontSize: '16px' }} />
-                                </Tooltip>
-                            }
-                        />
-                    </Col>
+                    <Tippy
+                        visible={searchResult.length > 0}
+                        render={(attrs) => (
+                            <div className="box" tabIndex={-1} {...attrs}>
+                                <Wrapper Children={'ketqua'}></Wrapper>
+                            </div>
+                        )}
+                        interactive={true}
+                    >
+                        <Col span={15}>
+                            <Input
+                                onChange={(e) => onchange(e)}
+                                className="Search"
+                                style={{ color: 'red', width: '65rem' }}
+                                placeholder="Nhập từ khóa cần tìm!"
+                                prefix={<SearchOutlined className="site-form-item-icon iconSearch" />}
+                                suffix={
+                                    <Tooltip title="Nhấn vào đây để nói!">
+                                        <AudioOutlined style={{ fontSize: '16px' }} />
+                                    </Tooltip>
+                                }
+                            />
+                        </Col>
+                    </Tippy>
+                    )
                     <Col span={2} style={{ flex: 0 }}>
                         <p
                             style={{
@@ -56,7 +85,16 @@ const HeaderApp: React.FC = (): JSX.Element => {
                                 fontSize: '3.8rem',
                             }}
                         >
-                            <CloudUploadOutlined />
+                            <Tippy content="Upload Video">
+                                <Link to="/Uploads">
+                                    <CloudUploadOutlined
+                                        style={{
+                                            color: ' #fc5c7d',
+                                            fontSize: '3.8rem',
+                                        }}
+                                    />
+                                </Link>
+                            </Tippy>
                         </p>
                     </Col>
                     <Col span={2} style={{ flex: 0 }}>

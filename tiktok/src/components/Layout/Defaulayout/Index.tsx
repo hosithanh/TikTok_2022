@@ -1,10 +1,9 @@
-import { AudioOutlined, SearchOutlined, CloudUploadOutlined } from '@ant-design/icons';
-import { Breadcrumb, Col, Input, Layout, Menu, MenuProps, Row, Tooltip } from 'antd';
-import logo from '../../../assets/images/logo.png';
+import { Col, Layout, Row } from 'antd';
 import '../Defaulayout/Style.css';
 import Header from './Header/Index';
+import Sidebar from './Sidebar/Index';
 
-const { Content, Sider } = Layout;
+const { Content } = Layout;
 interface Props {
     Children: any;
 }
@@ -13,31 +12,30 @@ const Defaulayout = ({ Children }: Props) => (
     <Layout>
         <Header></Header>
         <Layout>
-            <Sider width={200} className="site-layout-background">
-                <Menu
-                    mode="inline"
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
-                    style={{ height: '100%', borderRight: 0 }}
-                />
-            </Sider>
-            <Layout style={{ padding: '0 24px 24px' }}>
-                <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>Home</Breadcrumb.Item>
-                    <Breadcrumb.Item>List</Breadcrumb.Item>
-                    <Breadcrumb.Item>App</Breadcrumb.Item>
-                </Breadcrumb>
-                <Content
-                    className="site-layout-background"
-                    style={{
-                        padding: 24,
-                        margin: 0,
-                        minHeight: 280,
-                    }}
-                >
-                    Content
-                </Content>
-            </Layout>
+            <Row gutter={16}>
+                <Col span={8} style={{ textAlign: 'center' }}>
+                    <Sidebar></Sidebar>
+                </Col>
+                <Col span={16}>
+                    <Layout style={{ padding: '0 24px 24px' }}>
+                        {/* <Breadcrumb style={{ margin: '16px 0' }}>
+                            <Breadcrumb.Item>Home</Breadcrumb.Item>
+                            <Breadcrumb.Item>List</Breadcrumb.Item>
+                            <Breadcrumb.Item>App</Breadcrumb.Item>
+                        </Breadcrumb> */}
+                        <Content
+                            className="site-layout-background"
+                            style={{
+                                padding: 24,
+                                margin: 0,
+                                minHeight: 280,
+                            }}
+                        >
+                            {Children}
+                        </Content>
+                    </Layout>
+                </Col>
+            </Row>
         </Layout>
     </Layout>
 );

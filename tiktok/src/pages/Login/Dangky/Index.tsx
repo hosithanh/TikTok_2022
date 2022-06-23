@@ -1,4 +1,4 @@
-import { Button, Col, Form, Row, Select } from 'antd';
+import { Button, Col, Form, Input, Row, Select } from 'antd';
 import { useState } from 'react';
 import { REGEX } from '../../../utils/constants/validate';
 import './Style.css';
@@ -108,7 +108,7 @@ export default function Dangky() {
                         <Form.Item
                             name="info"
                             rules={[
-                                { required: true, message: 'Vui lòng nhập mã trường dữ liệu !' },
+                                { required: true, message: 'Vui lòng nhập số điện thoại !' },
                                 { pattern: REGEX.PHONE_NUMBER_REGEX, message: 'Biểu thức không hợp lệ!' },
                             ]}
                         >
@@ -128,7 +128,7 @@ export default function Dangky() {
                         <Form.Item
                             name="info"
                             rules={[
-                                { required: true, message: 'Vui lòng nhập mã trường dữ liệu !' },
+                                { required: true, message: 'Vui lòng nhập email !' },
                                 { pattern: REGEX.EMAIL_REGEX, message: 'Biểu thức không hợp lệ!' },
                             ]}
                         >
@@ -145,6 +145,62 @@ export default function Dangky() {
                             </Col>
                         </Form.Item>
                     )}
+                </Row>
+                <Row gutter={16}>
+                    <Col span={24}>
+                        <Form.Item rules={[{ required: true, message: 'Vui lòng nhập mã xác nhậnnhận !' }]}>
+                            <Input.Group compact>
+                                <Input
+                                    style={{
+                                        width: 'calc(100% - 79px)',
+                                        border: '2px solid black',
+                                        height: '37px',
+                                        borderTopLeftRadius: '10px',
+                                        borderBottomLeftRadius: '10px',
+                                        padding: '10px 10px ',
+                                        textAlign: 'left',
+                                    }}
+                                    placeholder="Nhập mã xác nhận!"
+                                />
+                                <Button
+                                    type="primary"
+                                    style={{
+                                        background: 'rgb(117, 112, 112)',
+                                        borderTopRightRadius: '10px',
+                                        borderBottomRightRadius: '10px',
+                                        height: '37px',
+                                    }}
+                                >
+                                    Gửi mã
+                                </Button>
+                            </Input.Group>
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={24}>
+                        <Button
+                            htmlType="submit"
+                            style={{
+                                textAlign: 'center',
+                                width: '100%',
+                                color: 'white',
+                                background: 'linear-gradient( #c471ed, #f64f59)',
+                                borderRadius: '10px',
+                            }}
+                        >
+                            Đăng nhập
+                        </Button>
+                    </Col>
+                </Row>
+                <Row style={{ bottom: '0px' }}>
+                    <Col span={24}>
+                        <p style={{ textAlign: 'center', fontSize: '12px' }}>
+                            Bằng cách đăng nhập bạn đồng ý với
+                            <span style={{ fontWeight: 800 }}> Điều khoản sử dụng</span> của tiktok và xác nhận rằng bạn
+                            đã đọc hiểu <span style={{ fontWeight: 800 }}>Chính sách quyền riêng tư</span> của tiktok.
+                        </p>
+                    </Col>
                 </Row>
             </Form>
         </div>
