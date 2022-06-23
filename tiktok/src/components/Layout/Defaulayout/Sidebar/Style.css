@@ -1,0 +1,29 @@
+.sidebar{
+    padding:10px 10px ;
+    margin-top: 15px;
+}
+
+.danhchoban {
+    padding: 10px 0px;
+    font-size: 23px;
+    color: black;
+    font-weight: 600;
+}
+.Fllowing {
+     font-size: 23px;
+     color:  black;
+    font-weight: 600;
+}
+.live {
+    font-size: 23px;
+    color:  black;
+    font-weight: 600;
+    margin-left: -11rem;
+}
+.icon_Check{
+    background: #69c0ff;
+    color:white;
+    borderRadius: 50,
+}
+
+

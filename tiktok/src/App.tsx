@@ -6,7 +6,7 @@ import { publicRoutes } from './routes/Index';
 function App() {
     return (
         <Router>
-            <div className="App">
+            <div className="App" style={{ overflowX: 'hidden' }}>
                 <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
